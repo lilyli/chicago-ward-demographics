@@ -20,7 +20,7 @@ def map_block_groups_to_wards():
     with open('data/ward_boundaries.geojson') as f:
         wards_data = json.load(f)
 
-    for feat in wards_data['features']: # a list of features
+    for feat in wards_data['features']:
         ward_id = feat['properties']['ward']
         ward_geom_1 = shape(feat['geometry'])
         # polygon consists of lat, long coord
@@ -38,9 +38,10 @@ def map_block_groups_to_wards():
 
     # read in il block groups shapefile, map block groups to wards
     il_block_groups = fiona.open("data/block_group_shapefiles/tl_2017_17_bg.shp")
+    # il_block_groups.schema
 
     for bg in il_block_groups:
-        if bg['properties']['COUNTYFP'] == COOK_IL_COUNTYFP: # block group is in cook county
+        if bg['properties']['COUNTYFP'] == COOK_IL_COUNTYFP:
             bg_geom_1 = shape(bg['geometry'])
             bg_geom = ops.transform(
                 partial(
@@ -61,10 +62,7 @@ def map_block_groups_to_wards():
 
             if len(intersecting_wards) > 0:
                 intersecting_wards = sorted(intersecting_wards, key = lambda x: x[1], reverse = True)
-                bg_to_ward_mapping[GET_BG_ID] = intersecting_wards[0][0]
-
-    # il_block_groups.schema
-    # first = il_block_groups.next()
+                bg_to_ward_mapping[bg['properties']['GEOID']] = intersecting_wards[0][0]
 
     return bg_to_ward_mapping
 
@@ -75,7 +73,7 @@ if __name__ == '__main__':
     with open('block_group_ward_mapping.csv', 'w') as f:
         writer = csv.writer(f)
         writer.writerow(['bg_id', 'ward_id'])
-        for bg_id, ward_id in map_block_groups_to_wards.items():
+        for bg_id, ward_id in bg_to_ward_mapping.items():
            writer.writerow([int(bg_id), int(ward_id)])
 
 
