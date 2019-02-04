@@ -19,6 +19,7 @@ def map_block_groups_to_wards():
 
     with open('data/ward_boundaries.geojson') as f:
         wards_data = json.load(f)
+    # from https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2017&layergroup=Block+Groups
 
     for feat in wards_data['features']:
         ward_id = feat['properties']['ward']
