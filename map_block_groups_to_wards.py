@@ -76,4 +76,3 @@ if __name__ == '__main__':
         for bg_id, ward_id in bg_to_ward_mapping.items():
            writer.writerow([int(bg_id), int(ward_id)])
 
-
