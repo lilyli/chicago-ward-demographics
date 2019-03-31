@@ -15,7 +15,10 @@ ward_demographics_boundaries.csv contains all the information in ward_demographi
 An interactive map of the data can be found at https://www.pauldouglasinstitute.org/chicago-data
 
 # Data Sources:
-ACS data (for race, ethnicity, income): https://factfinder.census.gov 
-⋅⋅* Guided Search -> I'm looking for information about people. -> *Select topic* -> Block Group/Illinois/Cook/All Block Groups within Cook County, Illinois -> *Select dataset*
+ACS data: https://factfinder.census.gov 
+
+* Guided Search -> I'm looking for information about people. -> *Select topic* -> Block Group/Illinois/Cook/All Block Groups within Cook County, Illinois -> *Select dataset*
+
 Census block group boundaries shapefile: https://www.census.gov/geo/maps-data/data/tiger-line.html
+
 Chicago ward boundaries shapefile: https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Wards-2015-/sp34-6z76
